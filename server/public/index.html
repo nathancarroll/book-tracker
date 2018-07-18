@@ -3,8 +3,18 @@
     <head>
         <meta charset="utf-8">
         <title>BOOK TRACKER</title>
+        <script src="vendors/angular.min.js"></script>
+        <script src="vendors/angular-route.min.js"></script>
+        <script src="scripts/client.js"></script>
+        <script src="scripts/controllers/book.controller.js"></script>
+        <script src="scripts/controllers/category.controller.js"></script>
     </head>
     <body ng-app="BookTrackerApp">
+        <ul>
+            <li><a href="#!/">BOOKS</a></li>
+            <li><a href="#!/category">CATEGORIES</a></li>
+        </ul>
         <h1>HELLO</h1>
+        <ng-view></ng-view>
     </body>
 </html>
