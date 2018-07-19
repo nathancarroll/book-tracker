@@ -1,3 +1,4 @@
-app.controller('CategoryController', [function(){
+app.controller('CategoryController', ['BookTrackerService', function(BookTrackerService){
     console.log('category controller loaded');
+    const self = this;
 }]);
