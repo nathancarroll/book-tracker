@@ -15,7 +15,8 @@ app.use(express.static('server/public'));
 app.get('/book', (req, res) => {
     console.log('book GET route');
     pool.query(`SELECT "books"."id", "title", "author", "image_path", "pages", "read", "date_completed", "category", "category_id" 
-                FROM "books" JOIN "categories" ON "categories".id = "books".category_id;`)
+                FROM "books" JOIN "categories" ON "categories".id = "books".category_id
+                ORDER BY "books".id;`)
     .then((PGres) => {
         console.log(PGres);
         res.send(PGres.rows)
@@ -75,7 +76,8 @@ app.get('/category', (req, res) => {
     console.log('category GET route');
     pool.query(`SELECT COUNT("books".id), "categories".category, "categories".id FROM "books" 
     RIGHT OUTER JOIN "categories" ON "categories".id = "books".category_id 
-    GROUP BY "categories".id;`)
+    GROUP BY "categories".id
+    ORDER BY "categories".id;`)
     .then((PGres) => {
         console.log(PGres);
         res.send(PGres.rows)

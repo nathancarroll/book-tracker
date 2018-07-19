@@ -5,14 +5,7 @@ app.controller('BookController', ['BookTrackerService', function(BookTrackerServ
     self.editMode = false;
     
     // This object is implied by the inputs on the view, but also declared here explicitly
-    self.book = {
-        id: 0,
-        title: '',
-        author: '',
-        category: '',
-        image_path: '',
-        category_id: 0
-    }
+    self.book = {};
 
     // Pass through the books object with the crucial books list
     self.books = BookTrackerService.books;
@@ -25,10 +18,12 @@ app.controller('BookController', ['BookTrackerService', function(BookTrackerServ
     self.addBook = function(){
         if (self.editMode){
             BookTrackerService.editBook(self.book);
+            clearInputs();
             self.editMode = false;
             return;
         }
         BookTrackerService.addBook(book);
+        clearInputs();
     }
 
 
@@ -43,6 +38,15 @@ app.controller('BookController', ['BookTrackerService', function(BookTrackerServ
         self.book.image_path = book.image_path;
     }
 
-
+    clearInputs = function(){
+        self.book = {
+            id: 0,
+            title: '',
+            author: '',
+            category: '',
+            image_path: '',
+            category_id: 0
+        }
+    }
 
 }]);
