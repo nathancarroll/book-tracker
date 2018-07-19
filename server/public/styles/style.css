@@ -1,4 +1,3 @@
-.card {
-    background-color: blanchedalmond;
-    min-width: 200px;
+md-card {
+    min-width: 200px !important;
 }

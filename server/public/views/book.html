@@ -10,20 +10,11 @@
         <input type="submit">
     </form>
     <div class="book-container">
-            <!-- <h2>{{book.title}}</h2>
-            <img ng-src="../assets/{{book.image_path}}"/>
-            <ul>
-                <li>{{book.author}}</li>
-                <li>{{book.category}}</li>
-                <li>{{book.pages}}</li>
-            </ul> -->
-            <!-- layout="row" layout-margin layout-wrap class="md-padding" class="parent" -->
-            <md-content layout-xs="column" layout="row" layout-margin layout-wrap class="parent" layout-wrap>
-                <!-- <div flex-xs flex-gt-xs="50" layout="column"> -->
+            <md-content layout-xs="column" layout="row" layout-margin layout-wrap>
                 <md-card ng-repeat="book in vm.books.list" 
                         flex=30 md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" 
                         md-theme-watch layout-wrap
-                        class="card">
+                        md-whiteframe="6">
                     <md-card-title>
                       <md-card-title-text>
                         <span class="md-headline">{{book.title}}</span>
@@ -40,6 +31,5 @@
                       <md-button ng-click="vm.deleteBook(book.id)">Delete</md-button>
                     </md-card-actions>
                 </md-card>
-                <!-- </div> -->
             </md-content>
 </div>
