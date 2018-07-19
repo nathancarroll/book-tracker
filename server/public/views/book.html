@@ -9,5 +9,14 @@
         <input ng-model="vm.book.image_path" type="text">
         <input type="submit">
     </form>
-    {{vm.books.list}}
+    <div class="book-container">
+        <div ng-repeat="book in vm.books.list">
+            <h2>{{book.title}}</h2>
+            <img ng-src="../assets/{{book.image_path}}"/>
+            <ul>
+                <li>{{book.author}}</li>
+                <li>{{book.category}}</li>
+                <li>{{book.pages}}</li>
+            </ul>
+        </div>
 </div>

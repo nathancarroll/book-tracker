@@ -13,7 +13,7 @@ app.use(express.static('server/public'));
 // ROUTES FOR /BOOK
 app.get('/book', (req, res) => {
     console.log('book GET route');
-    pool.query('SELECT * FROM "books";')
+    pool.query('SELECT * FROM "books" JOIN "categories" ON "categories".id = "books".category_id;')
     .then((PGres) => {
         console.log(PGres);
         res.send(PGres.rows)
