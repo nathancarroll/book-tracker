@@ -36,6 +36,16 @@ app.service('BookTrackerService', ['$http', function($http){
         })
     }
 
+    this.editBook = function(book){
+        console.log('editing book', book);
+        $http.put(`/book/${book.id}`, book).then(function(res){
+            console.log(res);
+            self.getBooks();
+        }).catch(function(err){
+            console.log('error during books PUT', err);
+        })
+    }
+
     this.getCategories = function(){
         $http.get('/category').then(function(res){
             console.log(res.data);
