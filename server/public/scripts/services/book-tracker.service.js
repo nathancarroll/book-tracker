@@ -46,7 +46,7 @@ app.service('BookTrackerService', ['$http', function($http){
 
     this.addCategory = function(category){
         console.log('adding category', category);
-        $http.post('/category', category).then(function(res){
+        $http.post('/category', {data: category}).then(function(res){
             console.log(res);
             self.getCategories();
         })

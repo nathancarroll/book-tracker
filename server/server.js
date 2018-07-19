@@ -52,6 +52,7 @@ app.delete('/book/:id', (req, res) => {
     })
 })
 
+// ROUTES FOR /CATEGORY
 app.get('/category', (req, res) => {
     console.log('category GET route');
     pool.query('SELECT * FROM "categories";')
@@ -66,8 +67,8 @@ app.get('/category', (req, res) => {
 })
 
 app.post('/category', (req, res) => {
-    console.log('category POST route');
-    pool.query(`INSERT INTO "categories" ("category") VALUES ($1);`, [req.body.category])
+    console.log('category POST route', req.body.data);
+    pool.query(`INSERT INTO "categories" ("category") VALUES ($1);`, [req.body.data])
     .then((PGres) => {
         console.log(PGres);
         res.sendStatus(200);
