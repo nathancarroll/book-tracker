@@ -19,6 +19,8 @@ app.service('BookTrackerService', ['$http', function($http){
         $http.post('/book', book).then(function(res){
             console.log(res);
             self.getBooks();
+            // you need to call getCat here so that the totals are updated once you switch to cat view
+            self.getCategories();
         }).catch(function(err){
             console.log('error during books POST', err);
         })
@@ -56,6 +58,10 @@ app.service('BookTrackerService', ['$http', function($http){
     }
 
     this.deleteCategory = function(category){
+        if (category.count > 0){
+            alert('Categories with books in them cannot be removed!');
+            return;
+        }
         console.log('deleting category', category);
         $http.delete(`/category/${category.id}`).then(function(res){
             console.log(res);

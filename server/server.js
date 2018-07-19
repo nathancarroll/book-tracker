@@ -56,7 +56,9 @@ app.delete('/book/:id', (req, res) => {
 // ROUTES FOR /CATEGORY
 app.get('/category', (req, res) => {
     console.log('category GET route');
-    pool.query('SELECT * FROM "categories";')
+    pool.query(`SELECT COUNT("books".id), "categories".category, "categories".id FROM "books" 
+    RIGHT OUTER JOIN "categories" ON "categories".id = "books".category_id 
+    GROUP BY "categories".id;`)
     .then((PGres) => {
         console.log(PGres);
         res.send(PGres.rows)

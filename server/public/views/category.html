@@ -6,7 +6,7 @@
     </form>
     <div class="category-container">
         <div ng-repeat="category in vm.categories.list">
-            <h3>{{category.category}}</h3>
+            <h3>{{category.category}}: {{category.count}}</h3>
             <button ng-click="vm.deleteCategory(category)">Remove</button>
         </div>
     </div>   

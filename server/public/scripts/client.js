@@ -1,6 +1,6 @@
 console.log('client.js loaded');
 
-const app = angular.module('BookTrackerApp', ['ngRoute']);
+const app = angular.module('BookTrackerApp', ['ngRoute', 'ngMaterial']);
 
 app.config(function($routeProvider){
     $routeProvider
