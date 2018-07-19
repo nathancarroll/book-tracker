@@ -10,14 +10,26 @@
         <input type="submit">
     </form>
     <div class="book-container">
-        <div ng-repeat="book in vm.books.list">
-            <h2>{{book.title}}</h2>
-            <img ng-src="../assets/{{book.image_path}}"/>
-            <ul>
-                <li>{{book.author}}</li>
-                <li>{{book.category}}</li>
-                <li>{{book.pages}}</li>
-            </ul>
-            <button ng-click="vm.deleteBook(book.id)">Remove</button>
-        </div>
+            <md-content layout-xs="column" layout="row" layout-margin layout-wrap>
+                <md-card ng-repeat="book in vm.books.list" 
+                        flex=30 md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" 
+                        md-theme-watch layout-wrap
+                        md-whiteframe="6">
+                    <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline">{{book.title}}</span>
+                        <span class="md-subhead">{{book.author}}</span>
+                      </md-card-title-text>
+                      <md-card-title-media>
+                        <div class="md-media-md card-media">
+                            <img ng-src="../assets/{{book.image_path}}"/>
+                        </div>
+                      </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="start center">
+                      <md-button>Edit Details</md-button>
+                      <md-button ng-click="vm.deleteBook(book.id)">Delete</md-button>
+                    </md-card-actions>
+                </md-card>
+            </md-content>
 </div>
