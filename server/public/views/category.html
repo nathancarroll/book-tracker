@@ -1,1 +1,7 @@
-<p>This is the category view</p>
+<div id="category-view">
+    <p>This is the category view</p>    
+    <form ng-submit="vm.addCategory(category)">
+        <input ng-model="vm.category" type="text" placeholder="category">
+        <input type="submit">
+    </form>
+</div>

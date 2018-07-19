@@ -54,6 +54,17 @@ app.service('BookTrackerService', ['$http', function($http){
             console.log('error during category POST', err);
         })
     }
+
+    this.deleteCategory = function(category){
+        console.log('deleting category', category);
+        $http.delete(`/category/${category.id}`).then(function(res){
+            console.log(res);
+            self.getCategories();
+        })
+        .catch(function(err){
+            console.log('error during category DELETE', err);
+        })
+    }
     // Initialize the storage arrays with all books and all categories when the app is loaded
     this.getBooks();
     this.getCategories();

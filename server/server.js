@@ -65,6 +65,32 @@ app.get('/category', (req, res) => {
     })
 })
 
+app.post('/category', (req, res) => {
+    console.log('category POST route');
+    pool.query(`INSERT INTO "categories" ("category") VALUES ($1);`, [req.body.category])
+    .then((PGres) => {
+        console.log(PGres);
+        res.sendStatus(200);
+    })
+    .catch((err) => {
+        console.log('error during category POST', err);
+        res.sendStatus(500);
+    })
+})
+
+app.delete('/category/:id', (req, res) => {
+    console.log('category DELETE route');
+    pool.query(`DELETE FROM "categories" WHERE "id" = $1;`, [req.params.id])
+    .then((PGres) => {
+        console.log(PGres);
+        res.sendStatus(200);
+    })
+    .catch((err) => {
+        console.log('error during category DELETE', err);
+        res.sendStatus(500);
+    })
+})
+
 app.listen(PORT, () => {
     console.log('listening on port', PORT);
 })
