@@ -13,7 +13,8 @@ app.use(express.static('server/public'));
 // ROUTES FOR /BOOK
 app.get('/book', (req, res) => {
     console.log('book GET route');
-    pool.query('SELECT * FROM "books" JOIN "categories" ON "categories".id = "books".category_id;')
+    pool.query(`SELECT "books"."id", "title", "author", "image_path", "pages", "read", "date_completed", "category" 
+                FROM "books" JOIN "categories" ON "categories".id = "books".category_id;`)
     .then((PGres) => {
         console.log(PGres);
         res.send(PGres.rows)
@@ -43,7 +44,7 @@ app.delete('/book/:id', (req, res) => {
     console.log('book DELETE route', req.params.id);
     pool.query(`DELETE FROM "books" WHERE "id" = $1;`, [req.params.id])
     .then((PGres) => {
-        console.log(PGres);
+        // console.log(PGres);
         res.sendStatus(200);
     })
     .catch((err) => {

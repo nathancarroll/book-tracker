@@ -6,7 +6,7 @@
         <select ng-model="vm.book.category_id">
             <option ng-repeat="category in vm.categories.list" value="{{category.id}}">{{category.category}}</option>
         </select>
-        <input ng-model="vm.book.image_path" type="text">
+        <input ng-model="vm.book.image_path" type="text" placeholder="image path">
         <input type="submit">
     </form>
     <div class="book-container">
@@ -18,5 +18,6 @@
                 <li>{{book.category}}</li>
                 <li>{{book.pages}}</li>
             </ul>
+            <button ng-click="vm.deleteBook(book.id)">Remove</button>
         </div>
 </div>
