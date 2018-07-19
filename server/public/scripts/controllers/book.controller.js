@@ -41,7 +41,7 @@ app.controller('BookController', ['BookTrackerService', function(BookTrackerServ
         self.book.title = book.title;
         self.book.author = book.author;
         self.book.category = book.category;
-        self.book.category_id = book.category_id;
+        self.book.category_id = '' + book.category_id;
         self.book.image_path = book.image_path;
     }
 
