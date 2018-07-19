@@ -1,1 +1,13 @@
-<p>This is the book view</p>
+<div id="book-view">
+    <p>This is the book view</p>
+    <form ng-submit="vm.addBook(vm.book)">
+        <input ng-model="vm.book.title" type="text" placeholder="title">
+        <input ng-model="vm.book.author" type="text" placeholder="author">
+        <select ng-model="vm.book.category_id">
+            <option ng-repeat="category in vm.categories.list" value="{{category.id}}">{{category.category}}</option>
+        </select>
+        <input ng-model="vm.book.image_path" type="text">
+        <input type="submit">
+    </form>
+    {{vm.categories.list}}
+</div>

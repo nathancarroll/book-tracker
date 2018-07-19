@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const pool = require('./modules/pool.js')
 
 const PORT = process.env.PORT || 5000;
 
@@ -23,11 +24,10 @@ app.get('/book', (req, res) => {
     })
 })
 
-
 app.post('/book', (req, res) => {
     console.log('book POST route', req.body);
     const book = req.body;
-    pool.query(`INSERT INTO "books" ("title", "author", "category_id", "image_path", "pages"
+    pool.query(`INSERT INTO "books" ("title", "author", "category_id", "image_path", "pages")
                 VALUES ($1, $2, $3, $4, $5);`, [book.title, book.author, book.category_id, book.image_path, book.pages])
     .then((PGres) => {
         console.log(PGres);
@@ -52,6 +52,18 @@ app.delete('/book/:id', (req, res) => {
     })
 })
 
+app.get('/category', (req, res) => {
+    console.log('category GET route');
+    pool.query('SELECT * FROM "categories";')
+    .then((PGres) => {
+        console.log(PGres);
+        res.send(PGres.rows)
+    })
+    .catch((err) => {
+        console.log('error during category GET', err);
+        res.sendStatus(500);
+    })
+})
 
 app.listen(PORT, () => {
     console.log('listening on port', PORT);
