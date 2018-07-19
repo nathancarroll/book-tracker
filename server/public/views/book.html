@@ -26,9 +26,16 @@
                         </div>
                       </md-card-title-media>
                     </md-card-title>
-                    <md-card-actions layout="row" layout-align="start center">
-                      <md-button ng-click="vm.startEdit(book)">Edit Details</md-button>
-                      <md-button ng-click="vm.deleteBook(book.id)">Delete</md-button>
+                    <md-card-actions layout="row" layout-align="start">
+                        <md-button ng-click="vm.markRead(book.id)" class="md-icon-button">
+                            <i class="material-icons">check_circle_outline</i>
+                        </md-button>
+                        <md-button ng-click="vm.startEdit(book)" class="md-icon-button">
+                          <i class="material-icons">edit</i>
+                        </md-button>
+                        <md-button ng-click="vm.deleteBook(book.id)" class="md-icon-button">
+                          <i class="material-icons">delete</i>
+                        </md-button>
                     </md-card-actions>
                 </md-card>
             </md-content>
