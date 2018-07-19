@@ -10,7 +10,6 @@
         <input type="submit">
     </form>
     <div class="book-container">
-        <div ng-repeat="book in vm.books.list">
             <!-- <h2>{{book.title}}</h2>
             <img ng-src="../assets/{{book.image_path}}"/>
             <ul>
@@ -19,9 +18,12 @@
                 <li>{{book.pages}}</li>
             </ul> -->
             <!-- layout="row" layout-margin layout-wrap class="md-padding" class="parent" -->
-            <md-content layout-xs="column" layout="row" layout-margin layout-wrap class="parent">
+            <md-content layout-xs="column" layout="row" layout-margin layout-wrap class="parent" layout-wrap>
                 <!-- <div flex-xs flex-gt-xs="50" layout="column"> -->
-                <md-card flex=30 md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" md-theme-watch>
+                <md-card ng-repeat="book in vm.books.list" 
+                        flex=30 md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" 
+                        md-theme-watch layout-wrap
+                        class="card">
                     <md-card-title>
                       <md-card-title-text>
                         <span class="md-headline">{{book.title}}</span>
@@ -40,5 +42,4 @@
                 </md-card>
                 <!-- </div> -->
             </md-content>
-        </div>
 </div>
