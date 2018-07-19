@@ -4,6 +4,7 @@ app.service('BookTrackerService', ['$http', function($http){
 
     self.books = { list: [] };
     self.categories = { list: [] };
+    self.searchResults = { list: [] };
 
     this.getBooks = function(){
         $http.get('/book').then(function(res){
@@ -79,6 +80,18 @@ app.service('BookTrackerService', ['$http', function($http){
         })
         .catch(function(err){
             console.log('error during category DELETE', err);
+        })
+    }
+
+    this.searchBooks = function(searchTerm){
+        console.log('searching books for', searchTerm);
+        $http.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`)
+        .then(function(res){
+            self.searchResults.list = res.data.items;
+            console.log(res.data.items[0].volumeInfo);
+        })
+        .catch(function(err){
+            console.log('error during books API request', err);
         })
     }
     // Initialize the storage arrays with all books and all categories when the app is loaded

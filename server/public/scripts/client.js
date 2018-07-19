@@ -12,6 +12,10 @@ app.config(function($routeProvider){
         templateUrl: 'views/category.html',
         controller: 'CategoryController as vm'
     })
+    .when('/search', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchController as vm'
+    })
     .otherwise({
         templateUrl: '<h1>404 - PAGE NOT FOUND</h1>'
     })
