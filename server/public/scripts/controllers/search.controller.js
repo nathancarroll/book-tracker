@@ -1,4 +1,4 @@
-app.controller('SearchController', ['BookTrackerService', function(BookTrackerService){
+app.controller('SearchController', ['BookTrackerService', '$mdDialog', function(BookTrackerService, $mdDialog){
     console.log('search controller loaded');
     const self = this;
 
@@ -7,5 +7,21 @@ app.controller('SearchController', ['BookTrackerService', function(BookTrackerSe
 
     // Pass through the search function
     self.searchBooks = BookTrackerService.searchBooks;
+
+    self.open = function(event){
+        console.log('show');
+        console.log(event);
+        $mdDialog.show({
+            templateUrl: 'views/dialog.html',
+            controller: 'SearchController as vm',
+            preserveScope: true,
+            targetEvent: event
+          });
+    }
+
+    self.close = function(){
+        console.log('close');
+        $mdDialog.hide();
+    }
 
 }])
