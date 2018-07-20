@@ -19,7 +19,8 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$scope',
             scope: $scope,
             // controller: 'SearchController as vm',
             preserveScope: true,
-            targetEvent: event
+            targetEvent: event,
+            clickOutsideToClose: true
           });
     }
 
