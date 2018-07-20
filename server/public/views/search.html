@@ -8,7 +8,6 @@
     <div class="book-container">
             <md-content layout-xs="column" layout="row" layout-margin layout-wrap>
                 <md-card ng-repeat="book in vm.searchResults.list" 
-                        ng-click="vm.open(book.volumeInfo)"
                         flex=30 md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" 
                         md-theme-watch layout-wrap
                         md-whiteframe="6">

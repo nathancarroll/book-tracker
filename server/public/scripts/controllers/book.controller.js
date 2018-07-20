@@ -1,4 +1,4 @@
-app.controller('BookController', ['BookTrackerService', function(BookTrackerService){
+app.controller('BookController', ['BookTrackerService', '$mdToast', '$mdDialog', '$scope', function(BookTrackerService, $mdToast, $mdDialog, $scope){
     console.log('book controller loaded');
     const self = this;
 
@@ -13,6 +13,8 @@ app.controller('BookController', ['BookTrackerService', function(BookTrackerServ
         image_path: '',
         category_id: 0
     }
+
+    self.activeBook = {};
 
     // Pass through the books object with the crucial books list
     self.books = BookTrackerService.books;
@@ -54,6 +56,31 @@ app.controller('BookController', ['BookTrackerService', function(BookTrackerServ
             image_path: '',
             category_id: 0
         }
+    }
+
+    self.open = function(book){
+        // self.activeBook = wrangleBook(book);
+        console.log(book);
+        self.activeBook = book;
+        $mdDialog.show({
+            templateUrl: 'views/dialog.html',
+            scope: $scope,
+            preserveScope: true,
+            targetEvent: event,
+            clickOutsideToClose: true
+          });
+    }
+
+    self.close = function(){
+        console.log(self.activeBook);
+        BookTrackerService.editBook(self.activeBook);
+        $mdDialog.hide();
+        $mdToast.show(
+            $mdToast.simple()
+              .textContent(self.activeBook.title + ' has been added to your book collection.')
+              .position('top right')
+              .hideDelay(3000)
+          );
     }
 
 }]);

@@ -1,4 +1,4 @@
-app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$scope', function(BookTrackerService, $mdDialog, $scope){
+app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$mdToast', '$scope', function(BookTrackerService, $mdDialog, $mdToast, $scope){
     console.log('search controller loaded');
     const self = this;
 
@@ -30,6 +30,12 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$scope',
         console.log(self.activeBook);
         self.addBook(self.activeBook);
         $mdDialog.hide();
+        $mdToast.show(
+            $mdToast.simple()
+              .textContent(self.activeBook.title + ' has been added to your book collection.')
+              .position('top right')
+              .hideDelay(3000)
+          );
     }
 
     wrangleBook = function(volumeInfoAPI){
