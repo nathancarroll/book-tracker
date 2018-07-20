@@ -23,21 +23,12 @@
                       </md-card-title-media>
                     </md-card-title>
                     <md-card-actions layout="row" layout-align="start">
-                        <md-button ng-click="vm.markRead(book.id)" class="md-icon-button">
-                            <i class="material-icons">check_circle_outline</i>
-                        </md-button>
-                        <md-button ng-click="vm.startEdit(book)" class="md-icon-button">
-                          <i class="material-icons">edit</i>
-                        </md-button>
-                        <md-button ng-click="vm.deleteBook(book.id)" class="md-icon-button">
-                          <i class="material-icons">delete</i>
+                        <md-button ng-click="vm.open(book.volumeInfo)" class="md-icon-button">
+                            <i class="material-icons">favorite</i>
                         </md-button>
                     </md-card-actions>
                 </md-card>
             </md-content>
     </div>
-
-<md-button ng-click="vm.open($event)">Open</md-button>
-<p>Val: {{ vm.category_id }}</p>
 
 </div>

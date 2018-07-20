@@ -2,6 +2,7 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$scope',
     console.log('search controller loaded');
     const self = this;
 
+    self.activeBook = {};
     // Pass through the search results object so the array can be accessed on the view
     self.searchResults = BookTrackerService.searchResults;
     // We also need the categories object to display as options in the fav dialog
@@ -10,9 +11,8 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$scope',
     // Pass through the search function
     self.searchBooks = BookTrackerService.searchBooks;
 
-    self.open = function(event){
-        console.log('show');
-        console.log(event);
+    self.open = function(book){
+        self.activeBook = book;
         $mdDialog.show({
             templateUrl: 'views/dialog.html',
             scope: $scope,
@@ -24,6 +24,7 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$scope',
 
     self.close = function(){
         console.log('close');
+        console.log(self.activeBook);
         $mdDialog.hide();
     }
 

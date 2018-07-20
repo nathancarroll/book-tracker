@@ -1,5 +1,6 @@
 <md-dialog aria-label="options dialog">
     <md-dialog-content layout-padding>
+      <h1>{{activeBook.title}}</h1>
       <h2 class="md-title">Choose an option</h2>
       <select ng-model="vm.category_id">
         <option ng-repeat="category in vm.categories.list" value="{{category.id}}">{{category.category}}</option>
