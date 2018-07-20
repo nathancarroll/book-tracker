@@ -1,11 +1,9 @@
 <md-dialog aria-label="options dialog">
     <md-dialog-content layout-padding>
       <h2 class="md-title">Choose an option</h2>
-      <md-select ng-model="myModel" placeholder="Pick">
-        <md-option>1</md-option>
-        <md-option>2</md-option>
-        <md-option>3</md-option>
-      </md-select>
+      <select ng-model="vm.category_id">
+        <option ng-repeat="category in vm.categories.list" value="{{category.id}}">{{category.category}}</option>
+    </select>
     </md-dialog-content>
     <md-dialog-actions>
       <span flex></span>
