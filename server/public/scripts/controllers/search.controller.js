@@ -1,4 +1,4 @@
-app.controller('SearchController', ['BookTrackerService', '$mdDialog', function(BookTrackerService, $mdDialog){
+app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$scope', function(BookTrackerService, $mdDialog, $scope){
     console.log('search controller loaded');
     const self = this;
 
@@ -13,7 +13,8 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', function(
         console.log(event);
         $mdDialog.show({
             templateUrl: 'views/dialog.html',
-            controller: 'SearchController as vm',
+            scope: $scope,
+            // controller: 'SearchController as vm',
             preserveScope: true,
             targetEvent: event
           });
