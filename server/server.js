@@ -14,7 +14,7 @@ app.use(express.static('server/public'));
 // ROUTES FOR /BOOK
 app.get('/book', (req, res) => {
     console.log('book GET route');
-    pool.query(`SELECT "books"."id", "title", "author", "image_path", "pages", "read", "date_completed", "category", "category_id" 
+    pool.query(`SELECT "books"."id", "title", "author", "image_path", "read", "date_completed", "category", "category_id" 
                 FROM "books" JOIN "categories" ON "categories".id = "books".category_id
                 ORDER BY "books".id;`)
     .then((PGres) => {
@@ -30,8 +30,8 @@ app.get('/book', (req, res) => {
 app.post('/book', (req, res) => {
     console.log('book POST route', req.body);
     const book = req.body;
-    pool.query(`INSERT INTO "books" ("title", "author", "category_id", "image_path", "pages")
-                VALUES ($1, $2, $3, $4, $5);`, [book.title, book.author, book.category_id, book.image_path, book.pages])
+    pool.query(`INSERT INTO "books" ("title", "author", "category_id", "image_path")
+                VALUES ($1, $2, $3, $4);`, [book.title, book.author, book.category_id, book.image_path])
     .then((PGres) => {
         console.log(PGres);
         res.sendStatus(200)
