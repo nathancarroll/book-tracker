@@ -62,6 +62,7 @@ app.controller('BookController', ['BookTrackerService', '$mdToast', '$mdDialog',
         // self.activeBook = wrangleBook(book);
         console.log(book);
         self.activeBook = book;
+        self.activeBook.category_id = '' + book.category_id;
         $mdDialog.show({
             templateUrl: 'views/dialog.html',
             scope: $scope,
@@ -77,7 +78,7 @@ app.controller('BookController', ['BookTrackerService', '$mdToast', '$mdDialog',
         $mdDialog.hide();
         $mdToast.show(
             $mdToast.simple()
-              .textContent(self.activeBook.title + ' has been added to your book collection.')
+              .textContent(self.activeBook.title + ' has been edited.')
               .position('top right')
               .hideDelay(3000)
           );

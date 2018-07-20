@@ -1,6 +1,9 @@
 <div>
+    <div class="md-padding">
     <input ng-model="vm.searchTerm" type="text" placeholder="search titles">
     <button ng-click="vm.searchBooks(vm.searchTerm)">Search</button>
+    <button ng-click="vm.open('')">Add Book Manually</button>
+    </div>
     <!-- <div ng-repeat="book in vm.searchResults.list">
         {{book.volumeInfo.title}} by {{book.volumeInfo.authors[0]}}
         <img ng-src="{{book.volumeInfo.imageLinks.thumbnail}}">
