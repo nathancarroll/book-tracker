@@ -88,7 +88,6 @@ app.service('BookTrackerService', ['$http', function($http){
         $http.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`)
         .then(function(res){
             self.searchResults.list = res.data.items;
-            console.log(res.data.items[0].volumeInfo);
         })
         .catch(function(err){
             console.log('error during books API request', err);
