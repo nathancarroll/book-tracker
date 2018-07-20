@@ -16,6 +16,7 @@
         <script src="scripts/client.js"></script>
         <script src="scripts/controllers/book.controller.js"></script>
         <script src="scripts/controllers/category.controller.js"></script>
+        <script src="scripts/controllers/search.controller.js"></script>
         <script src="scripts/services/book-tracker.service.js"></script>
 
         <!-- SOURCE CSS FILES -->
@@ -24,11 +25,30 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body ng-app="BookTrackerApp">
-        <ul>
-            <li><a href="#!/">BOOKS</a></li>
-            <li><a href="#!/category">CATEGORIES</a></li>
-        </ul>
-        <h1>HELLO</h1>
+        <div ng-cloak>
+            <md-content class="md-padding">
+                <md-nav-bar
+                    md-no-ink-bar="disableInkBar"
+                    md-selected-nav-item="currentNavItem"
+                    nav-bar-aria-label="navigation links">
+                    <a href="#!/">
+                    <md-nav-item md-nav-click="goto('page1')" name="page1">
+                        My Books
+                    </md-nav-item>
+                    </a>
+                    <a href="#!/search">
+                    <md-nav-item md-nav-click="goto('page2')" name="page2">
+                        Search Books
+                    </md-nav-item>
+                    </a>
+                    <a href="#!/category">
+                    <md-nav-item md-nav-click="goto('page3')" name="page3">
+                        Manage Categories
+                    </md-nav-item>
+                    </a>
+                </md-nav-bar>
+            </md-content>
+        </div>
         <ng-view></ng-view>
     </body>
 </html>
