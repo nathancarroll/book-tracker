@@ -8,5 +8,9 @@ app.controller('CategoryController', ['BookTrackerService', function(BookTracker
     self.deleteCategory = BookTrackerService.deleteCategory;
 
     // Pass through the categories object so we can access the list
+    self.books = BookTrackerService.books;
     self.categories = BookTrackerService.categories;
+
+    BookTrackerService.getCategories();
+    BookTrackerService.getBooks();
 }]);

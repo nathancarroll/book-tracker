@@ -7,6 +7,9 @@
     <div class="category-container">
         <div ng-repeat="category in vm.categories.list">
             <h3>{{category.category}}: {{category.count}}</h3>
+            <div ng-repeat="book in vm.books.list | filter: category.category">
+                <img ng-src="{{book.image_path}}"/>
+            </div>
             <button ng-click="vm.deleteCategory(category)">Remove</button>
         </div>
     </div>   
