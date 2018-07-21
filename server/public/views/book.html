@@ -1,14 +1,4 @@
 <div id="book-view">
-    <p>This is the book view</p>
-    <form ng-submit="vm.addBook(vm.book)">
-        <input ng-model="vm.book.title" type="text" placeholder="title">
-        <input ng-model="vm.book.author" type="text" placeholder="author">
-        <select ng-model="vm.book.category_id">
-            <option ng-repeat="category in vm.categories.list" value="{{category.id}}">{{category.category}}</option>
-        </select>
-        <input ng-model="vm.book.image_path" type="text" placeholder="image path">
-        <input type="submit">
-    </form>
     <div class="book-container">
             <md-content layout-xs="column" layout="row" layout-margin layout-wrap>
                 <md-card ng-repeat="book in vm.books.list" 
@@ -19,6 +9,9 @@
                       <md-card-title-text>
                         <span class="md-headline">{{book.title}}</span>
                         <span class="md-subhead">{{book.author}}<br>{{book.category}}</span>
+                        <!-- this is a really clunky way to get the datetime to display correctly, but i couldn't figure out anything else -->
+                        <span ng-init="book.date_completed ? book.toggle = true : book.toggle = false" 
+                            ng-show="book.date_completed" class="md-subhead">Finished on: {{book.date_completed.split('T05')[0]}}</span>
                       </md-card-title-text>
                       <md-card-title-media>
                         <div class="md-media-md card-media">
@@ -27,14 +20,14 @@
                       </md-card-title-media>
                     </md-card-title>
                     <md-card-actions layout="row" layout-align="start">
-                        <md-button ng-click="vm.markRead(book.id)" class="md-icon-button">
-                            <i class="material-icons">check_circle_outline</i>
+                        <md-button ng-click="vm.markRead(book.id, book.toggle); book.toggle = !book.toggle;" class="md-icon-button">
+                            <i class="material-icons orange">check_circle_outline</i>
                         </md-button>
-                        <md-button ng-click="vm.startEdit(book)" class="md-icon-button">
-                          <i class="material-icons">edit</i>
+                        <md-button ng-click="vm.open(book)" class="md-icon-button">
+                          <i class="material-icons orange">edit</i>
                         </md-button>
                         <md-button ng-click="vm.deleteBook(book.id)" class="md-icon-button">
-                          <i class="material-icons">delete</i>
+                          <i class="material-icons orange">delete</i>
                         </md-button>
                     </md-card-actions>
                 </md-card>

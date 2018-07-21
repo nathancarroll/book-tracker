@@ -1,14 +1,12 @@
 <div>
-    <input ng-model="vm.searchTerm" type="text" placeholder="search titles">
-    <button ng-click="vm.searchBooks(vm.searchTerm)">Search</button>
-    <!-- <div ng-repeat="book in vm.searchResults.list">
-        {{book.volumeInfo.title}} by {{book.volumeInfo.authors[0]}}
-        <img ng-src="{{book.volumeInfo.imageLinks.thumbnail}}">
-    </div> -->
+    <div class="md-padding">
+    <input ng-model="vm.searchTerm" type="text" placeholder="Book Title">
+    <button ng-click="vm.searchBooks(vm.searchTerm)">Search Books</button>
+    <button ng-click="vm.open('')">Add Book Manually</button>
+    </div>
     <div class="book-container">
             <md-content layout-xs="column" layout="row" layout-margin layout-wrap>
                 <md-card ng-repeat="book in vm.searchResults.list" 
-                        ng-click="vm.open(book.volumeInfo)"
                         flex=30 md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" 
                         md-theme-watch layout-wrap
                         md-whiteframe="6">
@@ -25,7 +23,7 @@
                     </md-card-title>
                     <md-card-actions layout="row" layout-align="start">
                         <md-button ng-click="vm.open(book.volumeInfo)" class="md-icon-button">
-                            <i class="material-icons">favorite</i>
+                            <i class="material-icons orange">favorite</i>
                         </md-button>
                     </md-card-actions>
                 </md-card>

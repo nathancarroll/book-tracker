@@ -114,6 +114,28 @@ app.delete('/category/:id', (req, res) => {
     })
 })
 
+app.put('/complete/:id/:toggle', (req, res) => {
+    console.log('complete PUT route', req.params);
+    let myVal;
+    // apparently body parser will convert your booleans to strings along the way.
+    // took me way way too long to figure that out. body parser sucks, once again.
+    if (req.params.toggle === 'true'){
+        myVal = "NULL"
+    } else {
+        myVal = "NOW()"
+    }
+    console.log(myVal);
+    pool.query(`UPDATE "books" SET "date_completed" = ${myVal} WHERE "id" = $1`, [req.params.id])
+    .then((PGres) => {
+        console.log(PGres);
+        res.sendStatus(200);
+    })
+    .catch((err) => {
+        console.log('error during complete PUT', err);
+        res.sendStatus(500);
+    })
+})
+
 app.listen(PORT, () => {
     console.log('listening on port', PORT);
 })

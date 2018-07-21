@@ -93,6 +93,18 @@ app.service('BookTrackerService', ['$http', function($http){
             console.log('error during books API request', err);
         })
     }
+
+    this.markRead = function(bookID, toggle){
+        console.log('marking book read', bookID, toggle);
+        $http.put(`/complete/${bookID}/${toggle}`)
+        .then(function(res){
+            console.log(res);
+            self.getBooks();
+        })
+        .catch(function(err){
+            console.log('error during complete PUT', err);
+        })
+    }
     // Initialize the storage arrays with all books and all categories when the app is loaded
     this.getBooks();
     this.getCategories();
