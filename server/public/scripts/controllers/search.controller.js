@@ -47,4 +47,5 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$mdToast
         book.image_path = volumeInfoAPI.imageLinks.thumbnail;
         return book;
     }
+
 }])
