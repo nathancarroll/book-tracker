@@ -17,9 +17,11 @@
                       <md-input-container class="md-block" flex-gt-sm>
                         <label>Category</label>
                         <md-select ng-model="vm.activeBook.category_id">
-                            <option ng-repeat="category in vm.categories.list" value="{{category.id}}">{{category.category}}</option>
-                        </select>
-                      </md-input-container>
+                            <md-option ng-repeat="category in vm.categories.list" value="{{category.id}}">{{category.category}}</md-option>
+                        </md-select>
+                        <!-- <md-select ng-model="vm.activeBook.category_id"
+                                   ng-options="category.name for category in vm.categories.list"></md-select>
+                      </md-input-container> -->
             
                       <md-input-container class="md-block" flex-gt-sm>
                         <label>Image Path</label>
