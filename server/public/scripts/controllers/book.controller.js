@@ -23,6 +23,8 @@ app.controller('BookController', ['BookTrackerService', '$mdToast', '$mdDialog',
     // Pass through the relevant functions from the service
     self.getBooks = BookTrackerService.getBooks;
     self.deleteBook = BookTrackerService.deleteBook;
+    self.markRead = BookTrackerService.markRead;
+
 
     self.addBook = function(){
         if (self.editMode){

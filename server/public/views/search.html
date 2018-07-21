@@ -4,10 +4,6 @@
     <button ng-click="vm.searchBooks(vm.searchTerm)">Search Books</button>
     <button ng-click="vm.open('')">Add Book Manually</button>
     </div>
-    <!-- <div ng-repeat="book in vm.searchResults.list">
-        {{book.volumeInfo.title}} by {{book.volumeInfo.authors[0]}}
-        <img ng-src="{{book.volumeInfo.imageLinks.thumbnail}}">
-    </div> -->
     <div class="book-container">
             <md-content layout-xs="column" layout="row" layout-margin layout-wrap>
                 <md-card ng-repeat="book in vm.searchResults.list" 
