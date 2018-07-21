@@ -31,7 +31,7 @@
                     <div layout-gt-sm="row">
                       <md-input-container class="md-block" flex-gt-sm>
                         <label>Category</label>
-                        <select ng-model="vm.activeBook.category_id">
+                        <md-select ng-model="vm.activeBook.category_id">
                             <option ng-repeat="category in vm.categories.list" value="{{category.id}}">{{category.category}}</option>
                         </select>
                       </md-input-container>

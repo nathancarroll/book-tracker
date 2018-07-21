@@ -1,7 +1,7 @@
 <div>
     <div class="md-padding">
-    <input ng-model="vm.searchTerm" type="text" placeholder="search titles">
-    <button ng-click="vm.searchBooks(vm.searchTerm)">Search</button>
+    <input ng-model="vm.searchTerm" type="text" placeholder="Book Title">
+    <button ng-click="vm.searchBooks(vm.searchTerm)">Search Books</button>
     <button ng-click="vm.open('')">Add Book Manually</button>
     </div>
     <!-- <div ng-repeat="book in vm.searchResults.list">
@@ -27,7 +27,7 @@
                     </md-card-title>
                     <md-card-actions layout="row" layout-align="start">
                         <md-button ng-click="vm.open(book.volumeInfo)" class="md-icon-button">
-                            <i class="material-icons">favorite</i>
+                            <i class="material-icons orange">favorite</i>
                         </md-button>
                     </md-card-actions>
                 </md-card>

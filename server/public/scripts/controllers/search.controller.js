@@ -13,6 +13,7 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$mdToast
     self.addBook = BookTrackerService.addBook;
 
     self.open = function(book){
+        self.activeBook = {};
         if (book) self.activeBook = wrangleBook(book);
         $mdDialog.show({
             templateUrl: 'views/dialog.html',

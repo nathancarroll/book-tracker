@@ -1,8 +1,31 @@
+/* body, md-content {
+    background-color : #CFD8DC !important;
+} */
+
 md-card {
     min-width: 200px !important;
     border-radius: 5px !important;
+    background-color: #CFD8DC !important;
+    color: #212121 !important;
 }
 
 md-card:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
+
+.material-icons.orange {
+    color: #455A64
+}
+
+nav-bar {
+    
+}
+
+.dark-primary-color    { background: #455A64; }
+.default-primary-color { background: #607D8B; }
+.light-primary-color   { background: #CFD8DC; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #FF9800; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }
