@@ -14,7 +14,11 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$mdToast
 
     self.open = function(book){
         self.activeBook = {};
-        if (book) self.activeBook = wrangleBook(book);
+        if (book){
+            self.activeBook = wrangleBook(book);
+        } else {
+            alert('Sorry, something went wrong! Please refresh the page and try your search again.');
+        }
         $mdDialog.show({
             templateUrl: 'views/dialog.html',
             scope: $scope,
@@ -26,9 +30,6 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$mdToast
     }
 
     self.close = function(){
-        // console.log('close, category id:');
-        // console.log(self.activeBook.category_id);
-        console.log(self.activeBook);
         self.addBook(self.activeBook);
         $mdDialog.hide();
         $mdToast.show(
