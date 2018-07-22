@@ -86,12 +86,7 @@ app.service('BookTrackerService', ['$http', function($http){
     }
 
     this.markRead = function(bookID, toggle){
-<<<<<<< HEAD
-        console.log('marking book read', bookID, toggle);
         $http.put(`/book/${bookID}/${toggle}`)
-=======
-        $http.put(`/complete/${bookID}/${toggle}`)
->>>>>>> latest
         .then(function(res){
             self.getBooks();
         })
