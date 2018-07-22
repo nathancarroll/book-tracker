@@ -1,4 +1,4 @@
-<div id="category-view">
+<!-- <div id="category-view">
     <p>This is the category view</p>    
     <form ng-submit="vm.addCategory(vm.category)">
         <input ng-model="vm.category" type="text" placeholder="category">
@@ -7,7 +7,46 @@
     <div class="category-container">
         <div ng-repeat="category in vm.categories.list">
             <h3>{{category.category}}: {{category.count}}</h3>
+            <div layout="row" layout-wrap>
+                <img ng-repeat="book in vm.books.list | filter: category.category" ng-src="{{book.image_path}}"  class="md-padding" height="50"/>
+            </div>
             <button ng-click="vm.deleteCategory(category)">Remove</button>
         </div>
     </div>   
-</div>
+</div> -->
+
+<div>
+        <div class="md-padding">
+            <form ng-submit="vm.addCategory(vm.category)">
+                <input ng-model="vm.category" type="text" placeholder="Category Name">
+                <input type="submit">
+            </form>
+        </div>
+        <div class="category-container">
+                <md-content layout-xs="column" layout="row" layout-margin layout-wrap>
+                    <md-card ng-repeat="category in vm.categories.list" 
+                            flex=30 md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" 
+                            md-theme-watch layout-wrap
+                            md-whiteframe="6">
+                            <div>
+                        <md-card-title>
+                          <md-card-title-text>
+                            <span class="md-headline">{{category.category}}: {{category.count}}</span>
+                          </md-card-title-text>
+                        </div>
+                            <div layout="row" layout-wrap class="md-block md-padding">
+                                <img ng-repeat="book in vm.books.list | filter: category.category" ng-src="{{book.image_path}}" height="60"/>
+                            </div>
+                          <md-card-title-media>
+                          </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start">
+                            <md-button ng-click="vm.deleteCategory(category)" class="md-icon-button">
+                                <i class="material-icons orange">delete</i>
+                            </md-button>
+                        </md-card-actions>
+                    </md-card>
+                </md-content>
+        </div>
+    
+    </div>
