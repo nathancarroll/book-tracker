@@ -18,17 +18,12 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$mdToast
         $mdDialog.show({
             templateUrl: 'views/dialog.html',
             scope: $scope,
-            // controller: 'SearchController as vm',
             preserveScope: true,
-            targetEvent: event,
             clickOutsideToClose: true
           });
     }
 
     self.close = function(){
-        // console.log('close, category id:');
-        // console.log(self.activeBook.category_id);
-        console.log(self.activeBook);
         self.addBook(self.activeBook);
         $mdDialog.hide();
         $mdToast.show(

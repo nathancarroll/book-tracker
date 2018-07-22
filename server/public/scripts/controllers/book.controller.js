@@ -2,18 +2,6 @@ app.controller('BookController', ['BookTrackerService', '$mdToast', '$mdDialog',
     console.log('book controller loaded');
     const self = this;
 
-    self.editMode = false;
-    
-    // This object is implied by the inputs on the view, but also declared here explicitly
-    self.book  = {
-        id: 0,
-        title: '',
-        author: '',
-        category: '',
-        image_path: '',
-        category_id: 0
-    }
-
     self.activeBook = {};
 
     // Pass through the books object with the crucial books list
@@ -22,60 +10,20 @@ app.controller('BookController', ['BookTrackerService', '$mdToast', '$mdDialog',
 
     // Pass through the relevant functions from the service
     self.getBooks = BookTrackerService.getBooks;
-    self.deleteBook = BookTrackerService.deleteBook;
     self.markRead = BookTrackerService.markRead;
 
-
-    self.addBook = function(){
-        if (self.editMode){
-            BookTrackerService.editBook(self.book);
-            clearInputs();
-            self.editMode = false;
-            return;
-        }
-        BookTrackerService.addBook(self.book);
-        clearInputs();
-    }
-
-
-    self.startEdit = function(book){
-        console.log('entering edit mode', book);
-        self.editMode = true;
-        self.book.id = book.id;
-        self.book.title = book.title;
-        self.book.author = book.author;
-        self.book.category = book.category;
-        self.book.category_id = '' + book.category_id;
-        self.book.image_path = book.image_path;
-    }
-
-    clearInputs = function(){
-        self.book = {
-            id: 0,
-            title: '',
-            author: '',
-            category: '',
-            image_path: '',
-            category_id: 0
-        }
-    }
-
     self.open = function(book){
-        // self.activeBook = wrangleBook(book);
-        console.log(book);
         self.activeBook = book;
         self.activeBook.category_id = '' + book.category_id;
         $mdDialog.show({
             templateUrl: 'views/dialog.html',
             scope: $scope,
             preserveScope: true,
-            targetEvent: event,
             clickOutsideToClose: true
           });
     }
 
     self.close = function(){
-        console.log(self.activeBook);
         BookTrackerService.editBook(self.activeBook);
         $mdDialog.hide();
         $mdToast.show(
@@ -86,4 +34,25 @@ app.controller('BookController', ['BookTrackerService', '$mdToast', '$mdDialog',
           );
     }
 
+    self.confirmDelete = function(book){
+        console.log(book.id);
+        const confirm = $mdDialog.confirm()
+            .title('Are you sure you want to delete this book?')
+            .ariaLabel('Delete book confirmation')
+            .cancel('Cancel')
+            .ok('Delete');
+
+        $mdDialog.show(confirm).then(function(){
+            console.log('delete case');
+            BookTrackerService.deleteBook(book.id);
+            $mdToast.show(
+                $mdToast.simple()
+                .textContent(book.title + ' has been deleted.')
+                .position('top right')
+                .hideDelay(3000)
+            );
+        }, function(){
+            console.log('cancel case');
+        })
+    }
 }]);
