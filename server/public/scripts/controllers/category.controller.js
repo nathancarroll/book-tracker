@@ -1,4 +1,4 @@
-app.controller('CategoryController', ['BookTrackerService', function(BookTrackerService){
+app.controller('CategoryController', ['BookTrackerService', '$mdDialog', '$mdToast', function(BookTrackerService, $mdDialog, $mdToast){
     console.log('category controller loaded');
     const self = this;
 
