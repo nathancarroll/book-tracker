@@ -10,7 +10,6 @@ app.controller('BookController', ['BookTrackerService', '$mdToast', '$mdDialog',
 
     // Pass through the relevant functions from the service
     self.getBooks = BookTrackerService.getBooks;
-    self.deleteBook = BookTrackerService.deleteBook;
     self.markRead = BookTrackerService.markRead;
 
     self.open = function(book){
@@ -20,7 +19,6 @@ app.controller('BookController', ['BookTrackerService', '$mdToast', '$mdDialog',
             templateUrl: 'views/dialog.html',
             scope: $scope,
             preserveScope: true,
-            targetEvent: event,
             clickOutsideToClose: true
           });
     }
@@ -35,5 +33,50 @@ app.controller('BookController', ['BookTrackerService', '$mdToast', '$mdDialog',
               .hideDelay(3000)
           );
     }
+
+    self.confirmDelete = function(book){
+        let deleted;
+        console.log(book.id);
+        const confirm = $mdDialog.confirm()
+            .title('Are you sure you want to delete this book?')
+            .ariaLabel('Delete book confirmation')
+            .cancel('Cancel')
+            .ok('Delete');
+
+        $mdDialog.show(confirm).then(function(){
+            console.log('delete case');
+            BookTrackerService.deleteBook(book.id);
+            deleted = true;
+        }, function(){
+            console.log('cancel case');
+        })
+
+        console.log(deleted);
+        if (deleted){
+            $mdToast.show(
+                $mdToast.simple()
+                .textContent(book.title + ' has been deleted.')
+                .position('top right')
+                .hideDelay(3000)
+            );
+        }
+    }
+
+    // $scope.showConfirm = function(ev) {
+    //     // Appending dialog to document.body to cover sidenav in docs app
+    //     var confirm = $mdDialog.confirm()
+    //           .title('Would you like to delete your debt?')
+    //           .textContent('All of the banks have agreed to forgive you your debts.')
+    //           .ariaLabel('Lucky day')
+    //           .targetEvent(ev)
+    //           .ok('Please do it!')
+    //           .cancel('Sounds like a scam');
+    
+    //     $mdDialog.show(confirm).then(function() {
+    //       $scope.status = 'You decided to get rid of your debt.';
+    //     }, function() {
+    //       $scope.status = 'You decided to keep your debt.';
+    //     });
+    //   };
 
 }]);

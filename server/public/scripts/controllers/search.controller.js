@@ -19,7 +19,6 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$mdToast
             templateUrl: 'views/dialog.html',
             scope: $scope,
             preserveScope: true,
-            targetEvent: event,
             clickOutsideToClose: true
           });
     }
