@@ -35,7 +35,7 @@
                           </md-card-title-text>
                         </div>
                             <div layout="row" layout-wrap class="md-block md-padding">
-                                <img ng-repeat="book in vm.books.list | filter: category.category" ng-src="{{book.image_path}}" height="60"/>
+                                <img ng-repeat="book in vm.books.list | filter: category.category : true" ng-src="{{book.image_path}}" height="60"/>
                             </div>
                           <md-card-title-media>
                           </md-card-title-media>
