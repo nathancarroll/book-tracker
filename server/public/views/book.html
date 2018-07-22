@@ -9,9 +9,9 @@
                       <md-card-title-text>
                         <span class="md-headline">{{book.title}}</span>
                         <span class="md-subhead">{{book.author}}<br>{{book.category}}</span>
-                        <!-- this is a really clunky way to get the datetime to display correctly, but i couldn't figure out anything else -->
-                        <span ng-init="book.date_completed ? book.toggle = true : book.toggle = false" 
+                        <span ng-init="book.date_completed ? book.toggle = true : book.toggle = false"
                             ng-show="book.date_completed" class="md-subhead">Finished on: {{book.date_completed.split('T05')[0]}}</span>
+                        <!-- this is a really clunky way to get the datetime to display correctly, but i couldn't figure out anything else -->                    
                       </md-card-title-text>
                       <md-card-title-media>
                         <div class="md-media-md card-media">

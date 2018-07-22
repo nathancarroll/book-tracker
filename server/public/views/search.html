@@ -7,9 +7,7 @@
     <div class="book-container">
             <md-content layout-xs="column" layout="row" layout-margin layout-wrap>
                 <md-card ng-repeat="book in vm.searchResults.list" 
-                        flex=30 md-theme="{{ showDarkTheme ? 'dark-blue' : 'default' }}" 
-                        md-theme-watch layout-wrap
-                        md-whiteframe="6">
+                        flex=30 layout-wrap md-whiteframe="6">
                     <md-card-title>
                       <md-card-title-text>
                         <span class="md-headline">{{book.volumeInfo.title}}</span>
@@ -29,5 +27,4 @@
                 </md-card>
             </md-content>
     </div>
-
 </div>

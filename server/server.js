@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const pool = require('./modules/pool.js')
 
 const BookRouter = require('./routes/book.router.js');
 const CategoryRouter = require('./routes/category.router.js')

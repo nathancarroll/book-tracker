@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
                 FROM "books" JOIN "categories" ON "categories".id = "books".category_id
                 ORDER BY "books".id;`)
     .then((PGres) => {
-        console.log(PGres);
         res.send(PGres.rows)
     })
     .catch((err) => {
@@ -24,7 +23,6 @@ router.post('/', (req, res) => {
     pool.query(`INSERT INTO "books" ("title", "author", "category_id", "image_path")
                 VALUES ($1, $2, $3, $4);`, [book.title, book.author, book.category_id, book.image_path])
     .then((PGres) => {
-        console.log(PGres);
         res.sendStatus(200)
     })
     .catch((err) => {
@@ -37,7 +35,6 @@ router.delete('/:id', (req, res) => {
     console.log('book DELETE route', req.params.id);
     pool.query(`DELETE FROM "books" WHERE "id" = $1;`, [req.params.id])
     .then((PGres) => {
-        // console.log(PGres);
         res.sendStatus(200);
     })
     .catch((err) => {
@@ -46,6 +43,7 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+// This could be cleaned up I guess, but it works...
 router.put('/:id/:editFlag', (req, res) => {
     console.log('book PUT route', req.params);
     let completed;
@@ -82,18 +80,4 @@ router.put('/:id/:editFlag', (req, res) => {
     })
 })
 
-
-// app.put('/complete/:id/:toggle', (req, res) => {
-//     console.log('complete PUT route', req.params);
-//     let myVal;
-//     // apparently body parser will convert your booleans to strings along the way.
-//     // took me way way too long to figure that out. body parser sucks, once again.
-//     if (req.params.toggle === 'true'){
-//         myVal = "NULL"
-//     } else {
-//         myVal = "NOW()"
-//     }
-//     console.log(myVal);
-
-// })
 module.exports = router;

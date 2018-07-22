@@ -1,20 +1,3 @@
-<!-- <div id="category-view">
-    <p>This is the category view</p>    
-    <form ng-submit="vm.addCategory(vm.category)">
-        <input ng-model="vm.category" type="text" placeholder="category">
-        <input type="submit">
-    </form>
-    <div class="category-container">
-        <div ng-repeat="category in vm.categories.list">
-            <h3>{{category.category}}: {{category.count}}</h3>
-            <div layout="row" layout-wrap>
-                <img ng-repeat="book in vm.books.list | filter: category.category" ng-src="{{book.image_path}}"  class="md-padding" height="50"/>
-            </div>
-            <button ng-click="vm.deleteCategory(category)">Remove</button>
-        </div>
-    </div>   
-</div> -->
-
 <div>
         <div class="md-padding">
             <form ng-submit="vm.addCategory(vm.category)">
@@ -48,5 +31,4 @@
                     </md-card>
                 </md-content>
         </div>
-    
     </div>
