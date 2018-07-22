@@ -14,15 +14,10 @@ app.controller('SearchController', ['BookTrackerService', '$mdDialog', '$mdToast
 
     self.open = function(book){
         self.activeBook = {};
-        if (book){
-            self.activeBook = wrangleBook(book);
-        } else {
-            alert('Sorry, something went wrong! Please refresh the page and try your search again.');
-        }
+        if (book) self.activeBook = wrangleBook(book);
         $mdDialog.show({
             templateUrl: 'views/dialog.html',
             scope: $scope,
-            // controller: 'SearchController as vm',
             preserveScope: true,
             targetEvent: event,
             clickOutsideToClose: true

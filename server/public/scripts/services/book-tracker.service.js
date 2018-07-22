@@ -8,7 +8,6 @@ app.service('BookTrackerService', ['$http', function($http){
 
     this.getBooks = function(){
         $http.get('/book').then(function(res){
-            console.log(res.data);
             self.books.list = res.data;
         }).catch(function(err){
             console.log('error during books GET', err);
@@ -18,7 +17,6 @@ app.service('BookTrackerService', ['$http', function($http){
     this.addBook = function(book){
         console.log('adding book', book);
         $http.post('/book', book).then(function(res){
-            console.log(res);
             self.getBooks();
             // you need to call getCat here so that the totals are updated once you switch to cat view
             self.getCategories();
@@ -30,7 +28,6 @@ app.service('BookTrackerService', ['$http', function($http){
     this.deleteBook = function(bookID){
         console.log('deleting book', bookID);
         $http.delete(`/book/${bookID}`).then(function(res){
-            console.log(res);
             self.getBooks();
         }).catch(function(err){
             console.log('error during books DELETE', err);
@@ -40,7 +37,6 @@ app.service('BookTrackerService', ['$http', function($http){
     this.editBook = function(book){
         console.log('editing book', book);
         $http.put(`/book/${book.id}`, book).then(function(res){
-            console.log(res);
             self.getBooks();
         }).catch(function(err){
             console.log('error during books PUT', err);
@@ -49,7 +45,6 @@ app.service('BookTrackerService', ['$http', function($http){
 
     this.getCategories = function(){
         $http.get('/category').then(function(res){
-            console.log(res.data);
             self.categories.list = res.data;
         })
         .catch(function(err){
@@ -58,9 +53,7 @@ app.service('BookTrackerService', ['$http', function($http){
     }
 
     this.addCategory = function(category){
-        console.log('adding category', category);
         $http.post('/category', {data: category}).then(function(res){
-            console.log(res);
             self.getCategories();
         })
         .catch(function(err){
@@ -73,9 +66,7 @@ app.service('BookTrackerService', ['$http', function($http){
             alert('Categories with books in them cannot be removed!');
             return;
         }
-        console.log('deleting category', category);
         $http.delete(`/category/${category.id}`).then(function(res){
-            console.log(res);
             self.getCategories();
         })
         .catch(function(err){
@@ -84,7 +75,6 @@ app.service('BookTrackerService', ['$http', function($http){
     }
 
     this.searchBooks = function(searchTerm){
-        console.log('searching books for', searchTerm);
         $http.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`)
         .then(function(res){
             self.searchResults.list = res.data.items;
@@ -95,10 +85,8 @@ app.service('BookTrackerService', ['$http', function($http){
     }
 
     this.markRead = function(bookID, toggle){
-        console.log('marking book read', bookID, toggle);
         $http.put(`/complete/${bookID}/${toggle}`)
         .then(function(res){
-            console.log(res);
             self.getBooks();
         })
         .catch(function(err){
