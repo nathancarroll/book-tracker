@@ -39,7 +39,7 @@ app.service('BookTrackerService', ['$http', function($http){
 
     this.editBook = function(book){
         console.log('editing book', book);
-        $http.put(`/book/${book.id}`, book).then(function(res){
+        $http.put(`/book/${book.id}/edit`, book).then(function(res){
             console.log(res);
             self.getBooks();
         }).catch(function(err){
@@ -96,7 +96,7 @@ app.service('BookTrackerService', ['$http', function($http){
 
     this.markRead = function(bookID, toggle){
         console.log('marking book read', bookID, toggle);
-        $http.put(`/complete/${bookID}/${toggle}`)
+        $http.put(`/book/${bookID}/${toggle}`)
         .then(function(res){
             console.log(res);
             self.getBooks();

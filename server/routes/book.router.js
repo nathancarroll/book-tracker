@@ -46,20 +46,54 @@ router.delete('/:id', (req, res) => {
     })
 })
 
-router.put('/:id', (req, res) => {
-    console.log('book PUT route', req.params.id);
-    const book = req.body;
-    console.log(book);
-    pool.query(`UPDATE "books" SET "title" = $1, "author" = $2, "category_id" = $3, "image_path" = $4 
-                WHERE "id" = $5;`, [book.title, book.author, book.category_id, book.image_path, req.params.id])
+router.put('/:id/:editFlag', (req, res) => {
+    console.log('book PUT route', req.params);
+    let completed;
+    if (req.params.editFlag === 'edit'){
+        const book = req.body;
+        pool.query(`UPDATE "books" SET "title" = $1, "author" = $2, "category_id" = $3, "image_path" = $4 
+                    WHERE "id" = $5;`, [book.title, book.author, book.category_id, book.image_path, req.params.id])
+        .then((PGres) => {
+            console.log(PGres);
+            res.sendStatus(200);
+            return;
+        })
+        .catch((err) => {
+            console.log('error during book PUT', err);
+            res.sendStatus(500);
+            return;
+        })
+    } else if (req.params.editFlag === 'true'){
+        completed = "NULL";
+    } else if (req.params.editFlag === 'false'){
+        completed = "NOW()"
+    } else {
+        res.sendStatus(500);
+        return;
+    }
+    pool.query(`UPDATE "books" SET "date_completed" = ${completed} WHERE "id" = $1`, [req.params.id])
     .then((PGres) => {
         console.log(PGres);
         res.sendStatus(200);
     })
     .catch((err) => {
-        console.log('error during book PUT', err);
+        console.log('error during complete PUT', err);
         res.sendStatus(500);
     })
 })
 
+
+// app.put('/complete/:id/:toggle', (req, res) => {
+//     console.log('complete PUT route', req.params);
+//     let myVal;
+//     // apparently body parser will convert your booleans to strings along the way.
+//     // took me way way too long to figure that out. body parser sucks, once again.
+//     if (req.params.toggle === 'true'){
+//         myVal = "NULL"
+//     } else {
+//         myVal = "NOW()"
+//     }
+//     console.log(myVal);
+
+// })
 module.exports = router;
