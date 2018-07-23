@@ -15,7 +15,7 @@ CREATE TABLE "books" (
 	"date_completed" DATE DEFAULT NULL
 );
 
--- Seed some initial categories
+-- Here are some initial categories you can use to get your database started
 INSERT INTO "categories" ("category") VALUES 
 ('History/Non-Fiction'),
 ('Science/Non-Fiction'),
